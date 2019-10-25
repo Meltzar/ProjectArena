@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
 
     Rigidbody rb;
     Camera cam;
+    Animator anim;
     Vector3 moveDir;
     Vector3 mousePos;
     float moveSpeed = 4;
@@ -16,6 +17,7 @@ public class CharacterController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,16 @@ public class CharacterController : MonoBehaviour
         moveDir.Normalize();
 
         rb.velocity = moveDir * moveSpeed;
+
+        //changes animation for movement
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            anim.SetInteger("Condition", 1);
+        }
+        else
+        {
+            anim.SetInteger("Condition", 0);
+        }
 
         //character facing mouse cursor
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
