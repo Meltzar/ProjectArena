@@ -24,6 +24,7 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         Movement();
+        InputProcessing();
     }
 
     void Movement()
@@ -54,5 +55,21 @@ public class CharacterController : MonoBehaviour
             Vector3 point = (ray.GetPoint(rayDistance));
             transform.LookAt(new Vector3(point.x, transform.position.y, point.z));
         }
+    }
+
+    void InputProcessing() 
+    {
+        // KeyCodes need to be changed to buttons
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            //Debug.Log("Attack");
+            //Insert attack commands here
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            //Debug.Log("Block");
+            //Insert block commands here
+        }
+
     }
 }
